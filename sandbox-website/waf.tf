@@ -10,8 +10,7 @@ resource "aws_wafv2_web_acl" "forms_acl" {
   }
 
   rule {
-    # make sure to update line 33 of output.tf if you change the name of the rule
-    name     = "AWSCognitoLoginOutsideCanada"
+    name     = local.cognito_login_outside_canada_rule_name
     priority = 5
 
     action {
@@ -51,7 +50,7 @@ resource "aws_wafv2_web_acl" "forms_acl" {
     }
 
     visibility_config {
-      metric_name                = "AWSCognitoLoginOutsideCanada"
+      metric_name                = local.cognito_login_outside_canada_rule_name
       cloudwatch_metrics_enabled = true
       sampled_requests_enabled   = true
     }
